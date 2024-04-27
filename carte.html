@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirage de carte</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    .card {
+        width: 300px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .card img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .card-description {
+        font-style: italic;
+        color: #555;
+    }
+    button {
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 5px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+        img{
+        max-width: 100px;
+        width: 100%;
+    } 
+    
+    a{
+        margin-top: 10px;
+        color: cornflowerblue;
+    }
+</style>
+</head>
+<body>
+<a href="./index.html"><img src="img/backrun-logo-william-clement-backrun.com.png"></a>
+
+<div class="card" id="cardContainer">
+    <img id="cardImage" src="" alt="Carte">
+    <div class="card-title" id="cardTitle"></div>
+    <div class="card-description" id="cardDescription"></div>
+</div>
+<button id="drawButton">Tirer une carte</button>
+
+<script>
+    var cards = [
+        { name: "BACKPILLS", description: "Le Piranha Rouge pénètre dans un trou de verre. Vous devez changer d'univers. Choisissez la diégèse de votre choix !", probability: 0.09, image: "./img/backpills.png", color: "#ffcccc" },
+        { name: "AJOUT D'UN TROU NOIR", description: "Ajoutez un trou noir sur la route de l'un des autres joueurs.", probability: 0.4, image: "./img/trou-noir.png", color: "#ccffcc" },
+        { name: "AJOUT D'UNE PLUIE DE METEORITE", description: "Ajoutez trois météorites sur la route de l'un des autres joueurs.", probability: 0.15, image: "./img/meteore.png", color: "#ccccff" },
+        { name: "BACKRUN", description: "This is just a come back..", probability: 0.05, image: "./img/backrunners-william-clement-back-run.com.png", color: "#ffffcc" },
+        { name: "BLOB", description: "Keeper à balancé une blob dans le moteur. Vous avancez plus vite ! Multipliez par deux vos points de mouvement.", probability: 0.1, image: "./img/champignon.png", color: "#ffccff" },
+        { name: "PATHFINDER", description: "Unai est un génie ! Il a trouvé un meilleur chemin. Ajoutez 4 à vos points de mouvement.", probability: 0.1, image: "./img/spaceship.png", color: "#ccffff" },
+        { name: "BLOB FUME", description: "Keeper a fumé les champignons. Divisez par deux vos points de Mouvement.", probability: 0.7, image: "./img/marijuana.png", color: "#ffff99" },
+        { name: "PATHFINDER BUGGE", description: "Unai découvre que son logiciel est buggé. Retirez 4 points de mouvement.", probability: 0.15, image: "./img/space.png", color: "#99ff99" },
+        { name: "APPARITION D'UN GOBEUR DE MONDE", description: "Attention ! Un gobeur de monde apparaît. Ajoutez un Gobeur de monde sur le chemin de l'un des autres joueurs.", probability: 0.15, image: "./img/", color: "#9999ff" }
+    ];
+
+    var cardContainer = document.getElementById('cardContainer');
+    var cardImageElement = document.getElementById('cardImage');
+    var cardTitleElement = document.getElementById('cardTitle');
+    var cardDescriptionElement = document.getElementById('cardDescription');
+
+    document.getElementById('drawButton').addEventListener('click', function() {
+        var randomValue = Math.random();
+        var cumulativeProbability = 0;
+
+        for (var i = 0; i < cards.length; i++) {
+            cumulativeProbability += cards[i].probability;
+
+            if (randomValue < cumulativeProbability) {
+                cardImageElement.src = cards[i].image;
+                cardTitleElement.textContent = cards[i].name;
+                cardDescriptionElement.textContent = cards[i].description;
+                cardContainer.style.backgroundColor = cards[i].color;
+                break;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lancer de dé</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    #dice {
+        font-size: 90vw; /* Taille du chiffre adaptée à la largeur de l'écran */
+        margin-bottom: 2rem;
+    }
+        button {
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 5px;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    img{
+        max-width: 100px;
+        width: 100%;
+    } 
+    
+    a{
+        margin-top: 10px;
+        color: cornflowerblue;
+    }
+</style>
+</head>
+<body>
+<a href="./index.html"><img src="img/backrun-logo-william-clement-backrun.com.png"></a>
+    
+<div id="dice">?</div>
+<button id="rollButton">Lancer de dé</button>
+<script>
+    document.getElementById('rollButton').addEventListener('click', function() {
+        // Générer un nombre aléatoire entre 1 et 6
+        var randomNumber = Math.floor(Math.random() * 6) + 1;
+        
+        // Mettre à jour le contenu du dé avec le nombre généré
+        document.getElementById('dice').textContent = randomNumber;
+    });
+</script>
+
+</body>
+</html>
